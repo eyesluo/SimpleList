@@ -161,7 +161,13 @@ void SimpleList<T>::add(T obj) {
 
 template<typename T>
 void SimpleList<T>::add(int index, T obj) {
-    if ((index < 0) || (index >= listSize)) {
+    if ((index < 0) || (index > listSize)) {
+        return;
+    }
+
+    if(listSize == 0)
+    {
+        add(obj);
         return;
     }
 
@@ -169,6 +175,7 @@ void SimpleList<T>::add(int index, T obj) {
     newNode->data = obj;
 
     if (index == 0) {
+        newNode->next = listBegin;
         listBegin = newNode;
     } else {
         SimpleListNode<T>* nodePrev = getNode(index - 1);
