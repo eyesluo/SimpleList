@@ -382,16 +382,18 @@ int SimpleList<T>::search(T obj) {
     if (compare == NULL) return -1;
 
     int i = 0;
+    bool found = false;
 
-    SimpleListNode<T>* hNode = getNode(i);
-    bool found               = compare(obj, hNode->data) == 0;
+    SimpleListNode<T>* hNode;
+    // bool found               = compare(obj, hNode->data) == 0;
 
     while (!found && i < listSize) {
-        i++;
+        
         hNode = getNode(i);
         found = compare(obj, hNode->data) == 0;
+        i++;
     }
-
+    
     return found ? i : -1;
 }
 
